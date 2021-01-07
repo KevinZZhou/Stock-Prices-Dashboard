@@ -9,16 +9,21 @@ from dash.dependencies import Input, Output
 # Initialize the Dash app
 app = dash.Dash(__name__, external_stylesheets = [dbc.themes.DARKLY])
 
+# Dashboard description
+description = """This dashboard is built with Plotly Dash.  It takes user 
+                 input and gets stock data if the input is a valid stock 
+                 ticker.  It then generates a graph of closing prices for 
+                 the specified stock."""
+
 # Setup the Dash app layout
 app.layout = html.Div(
-    className = "", 
     children = [dbc.Row(children = [
         dbc.Col(
             html.Div(
-                className = "", 
+                className = "container input-panel", 
                 children = [
-                    html.H2("Stock Market Dashboard"),
-                    html.H6("Created with Plotly Dash"),
+                    html.H3("Stock Market Dashboard"),
+                    html.P(description), 
                     dbc.Input(
                         id = "stock-ticker-input", 
                         value = "", 
@@ -27,16 +32,18 @@ app.layout = html.Div(
                     )
                 ]
             ), 
-            width = 4
+            md = 4, 
+            width = 12
         ), 
         dbc.Col(
             html.Div(
-                className = "", 
+                className = "container graph-panel", 
                 children = [
                     html.Div(id = "closing-prices")
                 ]
             ), 
-            width = 8
+            md = 8, 
+            width = 12
         )
     ])]
 )
@@ -60,7 +67,9 @@ def update_closing_prices_graph(input):
                     "type": "line"
                 }], 
                 "layout": {
-                    "title": input
+                    "title": input, 
+                    "xaxis": {"title": "Date"}, 
+                    "yaxis": {"title": "Price ($)"}
                 }
             }, 
         )
@@ -68,7 +77,7 @@ def update_closing_prices_graph(input):
     except:
         if str(input) == "":
             alert = dbc.Alert(
-                "Please input a valid stock ticker to display a proper graph.", 
+                "Please input a valid stock ticker to display a proper graph.",
                 color = "danger", 
                 dismissable = True
             )
@@ -79,8 +88,7 @@ def update_closing_prices_graph(input):
                 dismissable = True
             )
         return alert
-    
 
 # Run the Dash app
 if __name__ == '__main__':
-    app.run_server(debug = True)
+    app.run_server()
