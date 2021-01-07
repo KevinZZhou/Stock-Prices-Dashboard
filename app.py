@@ -90,11 +90,11 @@ def update_closing_prices_graph(input):
         # Returns an alert if the input is not a valid stock ticker
         else:
             alert = dbc.Alert(
-                str(input) + " is not a valid stock ticker.", 
+                '"' + str(input) + '"' + " is not a valid stock ticker.", 
                 color = "danger", 
                 dismissable = True
             )
-            return alert
+        return alert
 
 # Run the Dash app
 if __name__ == '__main__':
