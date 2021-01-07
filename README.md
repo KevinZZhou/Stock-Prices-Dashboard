@@ -6,9 +6,9 @@ Since I was interested in learning how to create dashboards to present data visu
 #### Screenshots
 ![Alert-Desktop](/Screenshots/Alert-Wide.png)
 ![Graph-Desktop](/Screenshots/Graph-Wide.png)
-<p float = "left">
+<p float = "center">
   <img src="Screenshots/Alert-Narrow.png" width = 49.5%>
-  <img src="Screenshots/Graph-Narrow.png" width = 49.5%>/> 
+  <img src="Screenshots/Graph-Narrow.png" width = 49.5%>
 </p>
 
 ## Setup
