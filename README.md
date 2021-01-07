@@ -6,7 +6,10 @@ Since I was interested in learning how to create dashboards to present data visu
 #### Screenshots
 ![Alert-Desktop](/Screenshots/Alert-Wide.png)
 ![Graph-Desktop](/Screenshots/Graph-Wide.png)
-![Alert-Mobile](/Screenshots/Alert-Narrow.png) | ![Graph-Mobile](/Screenshots/Graph-Narrow.png)
+<p float = "left">
+  <img src="Screenshots/Alert-Narrow.png" width = 49.5%>
+  <img src="Screenshots/Graph-Narrow.png" width = 49.5%>/> 
+</p>
 
 ## Setup
 First, make sure that you have Python installed on your device.  This project uses Python 3.9.1, but should work for Python 3.x.
