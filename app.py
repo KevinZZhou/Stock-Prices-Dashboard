@@ -1,6 +1,5 @@
 import datetime
 import pandas_datareader as web
-import plotly.express as px
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -8,7 +7,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
 # Initialize the Dash app
-app = dash.Dash(__name__, external_stylesheets = [dbc.themes.SOLAR])
+app = dash.Dash(__name__, external_stylesheets = [dbc.themes.DARKLY])
 
 # Setup the Dash app layout
 app.layout = html.Div(
@@ -49,24 +48,39 @@ def update_closing_prices_graph(input):
     start = datetime.datetime(2010, 1, 1)
     end = datetime.datetime.now()
 
-    stock_df = web.DataReader(input, "yahoo", start, end)
+    try:
+        stock_df = web.DataReader(input, "yahoo", start, end)
 
-    graph = dcc.Graph(
-        id = "closing-prices-graph", 
-        figure = {
-            "data": [{
-                "x": stock_df.index, 
-                "y": stock_df.Close, 
-                "type": "line"
-            }], 
-            "layout": {
-                "title": input
-            }
-        }, 
-        animate = True
-    )
-    return graph
+        graph = dcc.Graph(
+            id = "closing-prices-graph", 
+            figure = {
+                "data": [{
+                    "x": stock_df.index, 
+                    "y": stock_df.Close, 
+                    "type": "line"
+                }], 
+                "layout": {
+                    "title": input
+                }
+            }, 
+        )
+        return graph
+    except:
+        if str(input) == "":
+            alert = dbc.Alert(
+                "Please input a valid stock ticker to display a proper graph.", 
+                color = "danger", 
+                dismissable = True
+            )
+        else:
+            alert = dbc.Alert(
+                str(input) + " is not a valid stock ticker.", 
+                color = "danger", 
+                dismissable = True
+            )
+        return alert
+    
 
 # Run the Dash app
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug = True)
