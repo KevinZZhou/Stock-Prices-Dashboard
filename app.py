@@ -18,6 +18,7 @@ description = """This dashboard is built with Plotly Dash.  It takes user
 # Setup the Dash app layout
 app.layout = html.Div(
     children = [dbc.Row(children = [
+        # Left panel contains the dashboard title, description, and input box
         dbc.Col(
             html.Div(
                 className = "container input-panel", 
@@ -35,6 +36,7 @@ app.layout = html.Div(
             md = 4, 
             width = 12
         ), 
+        # Right panel is the area where the graph and alerts appear
         dbc.Col(
             html.Div(
                 className = "container graph-panel", 
@@ -48,16 +50,18 @@ app.layout = html.Div(
     ])]
 )
 
-# Callback to get the corresponding closing prices graph based on user input
+# Callback to generate the proper closing prices graph based on user input
 @app.callback(Output("closing-prices", "children"), 
              [Input("stock-ticker-input", "value")])
+# Returns a graph of closing prices, or an alert for an invalid input
 def update_closing_prices_graph(input): 
+    # Set up dates to acquire data for the graph
     start = datetime.datetime(2010, 1, 1)
     end = datetime.datetime.now()
-
+    # Try to get data for the input stock ticker and return the graph
     try:
         stock_df = web.DataReader(input, "yahoo", start, end)
-
+        # Generates the graph and returns it
         graph = dcc.Graph(
             id = "closing-prices-graph", 
             figure = {
@@ -74,20 +78,23 @@ def update_closing_prices_graph(input):
             }, 
         )
         return graph
+    # Returns an alert if the input is invalid
     except:
+        # Returns an alert if there is no input
         if str(input) == "":
             alert = dbc.Alert(
                 "Please input a valid stock ticker to display a proper graph.",
                 color = "danger", 
                 dismissable = True
             )
+        # Returns an alert if the input is not a valid stock ticker
         else:
             alert = dbc.Alert(
                 str(input) + " is not a valid stock ticker.", 
                 color = "danger", 
                 dismissable = True
             )
-        return alert
+            return alert
 
 # Run the Dash app
 if __name__ == '__main__':
