@@ -4,11 +4,11 @@
 Since I was interested in learning how to create dashboards to present data visualizations, I did this project, which is a dashboard web app that generates a graph of stock prices for a user-specified stock ticker.  The dashboard does not load in a file, but instead uses pandas datareader to fetch the data if the user input is a valid stock ticker.  The web app uses responsive design and should work on both mobile and desktop.
 
 #### Screenshots
-![Alert-Desktop](/Screenshots/Alert-Wide.png)
-![Graph-Desktop](/Screenshots/Graph-Wide.png)
+![Alert-Desktop](/screenshots/Alert-Wide.png)
+![Graph-Desktop](/screenshots/Graph-Wide.png)
 <p float = "center">
-  <img src="Screenshots/Alert-Narrow.png" width = 49.5%>
-  <img src="Screenshots/Graph-Narrow.png" width = 49.5%>
+  <img src = "screenshots/Alert-Narrow.png" width = 49.5%>
+  <img src = "screenshots/Graph-Narrow.png" width = 49.5%>
 </p>
 
 ## Setup
