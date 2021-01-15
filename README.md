@@ -33,7 +33,7 @@ $ conda install --file requirements.txt
 
 After this, run app.py within an IDE or navigate to the project directory and enter the following in the command line:
 ```sh
-$ python MainApp.py
+$ python app.py
 ```
 
 ## Technologies Used
